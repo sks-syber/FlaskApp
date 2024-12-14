@@ -11,3 +11,8 @@ def user_getall_controller():
 def user_addone_controller():   
     return obj.user_addone_model(request.form)
     # return "Thiss is user page" 
+
+@app.route("/user/updateone", methods=["PUT"])
+def user_updateone_controller():   
+    return obj.user_updateone_model(request.form)
+    # return "Thiss is user page" 

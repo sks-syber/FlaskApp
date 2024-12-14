@@ -23,3 +23,7 @@ class Usermodel():
     def user_addone_model(self,data):
         self.cur.execute(f"INSERT INTO user(username,email,mobile,password) VALUES('{data['username']}','{data['email']}','{data['mobile']}','{data['password']}')")
         return "Data added succesfully"
+    
+    def user_updateone_model(self,data):
+        self.cur.execute(f"UPDATE user SET mobile='{data['mobile']}' WHERE id='{data['id']}'")
+        return "Data updated succesfully"
