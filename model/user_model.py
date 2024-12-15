@@ -27,3 +27,10 @@ class Usermodel():
     def user_updateone_model(self,data):
         self.cur.execute(f"UPDATE user SET mobile='{data['mobile']}' WHERE id='{data['id']}'")
         return "Data updated succesfully"
+    
+    def user_deleteone_model(self,id):
+        self.cur.execute(f"DELETE FROM user  WHERE id={id}")
+        if self.cur.rowcount>0:
+            return "Data deleted succesfully"
+        else:
+            return "Nothing deleted"
