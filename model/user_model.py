@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+from flask import make_response
 
 class Usermodel():
     def __init__(self):
@@ -14,23 +15,23 @@ class Usermodel():
     def user_getall_model(self):
         self.cur.execute("SELECT * FROM user")
         result=self.cur.fetchall()
-        print(result)
+        # print(result)
         if len(result)>0:
-            return json.dumps(result)
+            return make_response({"Data":result},200)
         else:
-            return {"message":"No data found"}
+            return make_response({"message":"No data found"},204)
         
     def user_addone_model(self,data):
         self.cur.execute(f"INSERT INTO user(username,email,mobile,password) VALUES('{data['username']}','{data['email']}','{data['mobile']}','{data['password']}')")
-        return {"message":"Data added succesfully"}
+        return make_response({"message":"Data added succesfully"},200)
     
     def user_updateone_model(self,data):
         self.cur.execute(f"UPDATE user SET mobile='{data['mobile']}' WHERE id='{data['id']}'")
-        return {"message":"Data updated succesfully"}
+        return make_response({"message":"Data updated succesfully"},200)
     
     def user_deleteone_model(self,id):
         self.cur.execute(f"DELETE FROM user  WHERE id={id}")
         if self.cur.rowcount>0:
-            return {"message":"Data deleted succesfully"}
+            return make_response({"message":"Data deleted succesfully"},200)
         else:
-            return {"message":"Nothing deleted"}
+            return ({"message":"Nothing deleted"},202)
