@@ -26,3 +26,7 @@ def user_deleteone_controller(id):
 def user_patch_controller(id):   
     return obj.user_patch_model(request.form,id)
     
+
+@app.route("/user/getall/limit/<limit>/page/<pageno>",methods=["GET"])
+def user_pagination_controller(limit,pageno):
+    return obj.user_pagination_model(limit,pageno)

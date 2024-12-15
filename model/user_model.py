@@ -47,6 +47,16 @@ class Usermodel():
             # return qry
             self.cur.execute(qry)
             return make_response({"message":"Data updated succesfully"},200)
-
     
-    
+    def user_pagination_model(self,limit,pageno):
+        limit=int(limit)
+        pageno=int(pageno)
+        start=(pageno*limit)-limit
+        qry=f"SELECT * FROM user LIMIT {start}, {limit}"
+        self.cur.execute(qry)
+        result=self.cur.fetchall()
+        if len(result)>0:
+            res=make_response({"Data":result},200)
+            return res
+        else:
+            return make_response({"message":"No data found "}, 204)
