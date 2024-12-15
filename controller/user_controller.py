@@ -21,3 +21,8 @@ def user_updateone_controller():
 def user_deleteone_controller(id):   
     return obj.user_deleteone_model(id)
     
+
+@app.route("/user/patch/<id>", methods=["PATCH"])
+def user_patch_controller(id):   
+    return obj.user_patch_model(request.form,id)
+    

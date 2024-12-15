@@ -37,3 +37,16 @@ class Usermodel():
             return make_response({"message":"Data deleted succesfully"},200)
         else:
             return ({"message":"Nothing deleted"},202)
+        
+    def user_patch_model(self,data,id):
+            qry="UPDATE user SET "
+            for key in data:
+                qry+= f"{key}='{data[key]}',"
+
+            qry = qry[:-1] + f" WHERE id={id}"
+            # return qry
+            self.cur.execute(qry)
+            return make_response({"message":"Data updated succesfully"},200)
+
+    
+    
