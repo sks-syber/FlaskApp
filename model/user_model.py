@@ -17,7 +17,9 @@ class Usermodel():
         result=self.cur.fetchall()
         # print(result)
         if len(result)>0:
-            return make_response({"Data":result},200)
+            res=make_response({"Data":result},200)
+            res.headers['Access-Control-Allow-Origin']="*"
+            return res
         else:
             return make_response({"message":"No data found"},204)
         
