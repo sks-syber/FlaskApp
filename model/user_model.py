@@ -60,3 +60,10 @@ class Usermodel():
             return res
         else:
             return make_response({"message":"No data found "}, 204)
+    def user_fileupload_model(self,uid,filepath):
+        self.cur.execute(f"UPDATE user SET photo='{filepath}' WHERE id={uid}")
+
+        if self.cur.rowcount>0:
+            return make_response({"message":"file uploaded successfully"},200)
+        else:
+            return make_response({"message":"No update happen"},204)
