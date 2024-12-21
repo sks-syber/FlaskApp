@@ -46,3 +46,6 @@ def user_fileupload_controller(uid):
     file.save(filepath)
     return obj.user_fileupload_model(uid,filepath)
 
+@app.route("/uploads/<filename>")
+def display_photo(filename):
+    return send_file(f"uploads/{filename}")
